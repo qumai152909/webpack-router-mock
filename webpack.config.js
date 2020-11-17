@@ -5,7 +5,7 @@ const htmlWebpackPlugin = require('html-webpack-plugin');
 // __dirname: 当前文件webpack.config.js所在的目录路径；此处是项目根目录
 module.exports = {
   mode: 'development',
-  entry: './src/index.js',
+  entry: './src/App.js',
   output: {
     filename: 'bundle.js',
     path: path.join(__dirname, 'dist'),
