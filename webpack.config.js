@@ -1,11 +1,10 @@
 const path = require('path');
-// 引入webpack 和 html-webpack-plugin插件
 const htmlWebpackPlugin = require('html-webpack-plugin');
 
-// __dirname: 当前文件webpack.config.js所在的目录路径；此处是项目根目录
+// __dirname: 当前文件(webpack.config.js)所在的目录路径；此处是项目根目录
 module.exports = {
   mode: 'development',
-  entry: './src/App.js',
+  entry: './src/main.js',
   output: {
     filename: 'bundle.js',
     path: path.join(__dirname, 'dist'),
@@ -33,10 +32,20 @@ module.exports = {
       }
     ]
   },
+  resolve: { // 在何处、如何查找文件
+    extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
+    modules: [
+      path.resolve(__dirname, 'src'),
+      path.resolve(__dirname, 'node_modules'),
+    ]
+  },
   plugins: [
     new htmlWebpackPlugin({
       title: "Webpack-dev-server App",
-      inject: "true"
+      inject: "true",
+      template: './src/index.html',
+      filename: 'index.html',
+      path: '/dist/'
     })
   ],
   devServer: {
