@@ -1,0 +1,5 @@
+.flower-block {
+  width: 100px;
+  height: 100px;
+  background: url(../../assets/images/flower.png) no-repeat center / cover;
+}
