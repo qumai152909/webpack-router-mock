@@ -1,12 +1,15 @@
-// 顶层组件
+// 顶层组件，入口组件
 import React from "react";
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import { Router, Link } from "react-router-dom";
+import { createBrowserHistory } from 'history';
 
-import Routes from './Routes';
+import Routes from './routes';
+
+const history = createBrowserHistory();
 
 export default function App() {
   return (
-    <Router>
+    <Router history={ history }>
       <div className="container">
         {/* 所有页面的公共导航 */}
         <nav>
