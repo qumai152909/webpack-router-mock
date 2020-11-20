@@ -1,13 +1,22 @@
 const path = require('path');
-const htmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-// __dirname: 当前文件(webpack.config.js)所在的目录路径；此处是项目根目录
+const { rootPath, srcPath } = require('./configs');
+
 module.exports = {
   mode: 'development',
-  entry: './src/index.js',
+  entry: {
+    vendor: [
+      'react',
+      'react-dom',
+      'react-router',
+    ],
+    main: './src/index.js',
+  },
   output: {
-    filename: 'js/chunk.js',
-    path: path.join(__dirname, 'dist'), // 打包后文件输出目录
+    filename: 'js/[name].chunk.js',
+    path: path.join(rootPath, 'dist'), // 打包后文件输出目录
     publicPath: '/dist/',
     chunkFilename: `js/[name].chunk.js`
   },
@@ -40,18 +49,19 @@ module.exports = {
   resolve: { // 在何处、如何查找文件
     extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
     modules: [
-      path.resolve(__dirname, 'src'),
-      path.resolve(__dirname, 'node_modules'),
+      srcPath,
+      path.resolve(rootPath, 'node_modules'),
     ]
   },
   plugins: [
-    new htmlWebpackPlugin({
+    new HtmlWebpackPlugin({
       title: "Webpack-dev-server App",
       inject: "true",
-      template: './src/index.html',
+      template: path.join(srcPath, 'index.html'),
       filename: 'index.html',
       path: '/dist/'
-    })
+    }),
+    new BundleAnalyzerPlugin()
   ],
   devServer: {
     host: 'localhost', // 默认localhost
