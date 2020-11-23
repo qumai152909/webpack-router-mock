@@ -37,8 +37,13 @@ module.exports = {
         },
       },
       {
-        test: /\.(woff|woff2|eot|ttf|otf)$/,
-        use: 'file-loader'
+        test: /\.(ttf|eot|woff|woff2|svg)$/,
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: 'fonts/[name].[ext]'
+          }
+        }
       }
     ]
   },
@@ -73,7 +78,10 @@ module.exports = {
     modules: [
       srcPath,
       path.resolve(rootPath, 'node_modules'),
-    ]
+    ],
+    alias: {
+      '@assets': path.resolve(rootPath, './assets')
+    },
   },
   plugins: [
     new HtmlWebpackPlugin({
