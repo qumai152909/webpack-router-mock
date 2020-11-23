@@ -5,16 +5,16 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const { rootPath, srcPath, publicPath } = require('./configs');
 
 module.exports = {
-  mode: 'development',
-  devtool: 'inline-source-map',
+  mode: 'production',
+  devtool: 'source-map',
   entry: {
     app: './src/index.js',
   },
   output: {
-    filename: 'js/[name].js',
+    filename: 'js/[name].[hash].js',
     path: path.join(rootPath, 'dist'), // 打包后文件输出目录
     publicPath: '/dist/',
-    chunkFilename: `js/[name].js`
+    chunkFilename: `js/[name].[contenthash].js`
   },
   module: {
     rules: [
@@ -32,7 +32,7 @@ module.exports = {
           loader: 'url-loader',
           options: {
             limit: 3000,
-            name: 'images/[name].[ext]',
+            name: 'images/[name].[contenthash].[ext]',
           }
         },
       },
@@ -44,21 +44,18 @@ module.exports = {
   },
   optimization: {
     moduleIds: 'hashed',
+    runtimeChunk: {
+      name: 'manifest', // 将runtime代码提取到一个单独的文件中
+    },
     splitChunks: {
       cacheGroups: {
-        react: { // 项目基本框架，react等
-          name: 'react-all', // can be used in chunks array of HtmlWebpackPlugin
-          test: /(react|react-dom|prop-types|history|react-router|react-router-dom)/, // test: /[\\/]node_modules[\\/]/,
+        vendor: {
+          name: 'vendors', // can be used in chunks array of HtmlWebpackPlugin
+          test: /[\\/]node_modules[\\/]/,
           chunks: 'all',
           priority: 10,
         },
-        vendor: {
-          name: 'vendors',
-          test: /[\\/]node_modules[\\/]/,
-          chunks: 'all',
-          priority: 9,
-        },
-        common: { // 其他同步加载业务代码公共包
+        common: {
           name: 'common',
           test: /[\\/]src[\\/]/,
           chunks: 'all',

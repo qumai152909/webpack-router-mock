@@ -4,8 +4,10 @@ const path = require('path');
 
 const rootPath = path.resolve(__dirname, '../'); // 项目根目录
 const srcPath = path.resolve(__dirname, '../', 'src');
+const publicPath = path.resolve(__dirname, '../', 'public');
 
 module.exports = {
   rootPath,
-  srcPath
+  srcPath,
+  publicPath
 };
