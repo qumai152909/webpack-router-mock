@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Link } from "react-router-dom";
 import { createBrowserHistory } from 'history';
+import './assets/css/fonts.css';
 
 import Routes from './routes';
 
