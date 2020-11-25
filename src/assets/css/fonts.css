@@ -1,4 +1,4 @@
-// 字体图标文件，公共，一般入口js文件中引入，全局使用
+/* 字体图标文件 */
 @font-face {
   font-family: 'icomoon';
   src:  url('../fonts/icomoon.eot?5zxtnh');

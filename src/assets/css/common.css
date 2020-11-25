@@ -1,0 +1,22 @@
+.flex-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+.hide {
+  display: none;
+}
+.show {
+  display: block;
+}
+.ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
