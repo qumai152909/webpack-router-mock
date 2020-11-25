@@ -6,21 +6,22 @@ const { rootPath, srcPath, publicPath } = require('./configs');
 
 module.exports = {
   mode: 'development',
-  devtool: 'inline-source-map',
+  devtool: 'cheap-inline-source-map',
   entry: {
-    app: './src/index.js',
+    main: './src/index.js',
   },
   output: {
     filename: 'js/[name].js',
     path: path.join(rootPath, 'dist'), // 打包后文件输出目录
     publicPath: '/dist/',
-    chunkFilename: `js/[name].js`
+    chunkFilename: `js/[name].chunk.js`
   },
   module: {
     rules: [
       {
         test: /\.js[x]?$/,
-        use: 'babel-loader'
+        use: 'babel-loader',
+        exclude: /node_modules/,
       },
       {
         test: /\.css$/, // css-loader是基本的，加载并解析css文件；style-loader：注入到style标签中；
@@ -53,7 +54,7 @@ module.exports = {
       cacheGroups: {
         react: { // 项目基本框架，react等
           name: 'react-all', // can be used in chunks array of HtmlWebpackPlugin
-          test: /(react|react-dom|prop-types|history|react-router|react-router-dom)/, // test: /[\\/]node_modules[\\/]/,
+          test: /(react|react-dom|react-router|react-router-dom)/,
           chunks: 'all',
           priority: 10,
         },
@@ -63,13 +64,6 @@ module.exports = {
           chunks: 'all',
           priority: 9,
         },
-        common: { // 其他同步加载业务代码公共包
-          name: 'common',
-          test: /[\\/]src[\\/]/,
-          chunks: 'all',
-          minSize: 0,
-          minChunks: 2,
-        }
       }
     },
   },
@@ -80,7 +74,9 @@ module.exports = {
       path.resolve(rootPath, 'node_modules'),
     ],
     alias: {
-      '@assets': path.resolve(rootPath, './assets')
+      '@assets': path.resolve(srcPath, './assets'),
+      '@components': path.resolve(srcPath, './components'),
+      '@utils': path.resolve(srcPath, './utils')
     },
   },
   plugins: [
