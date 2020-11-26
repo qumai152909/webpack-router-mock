@@ -1,11 +1,15 @@
 import React from "react";
-import './index.css';
+import './index.less';
 
 export default function Home() {
   return (
-    <div className="home-wrapper">
-      Home
-      <div className="flower-block">flower</div>
-    </div>
+    <section className="home-wrapper wrapper">
+      <div className="home-block">home</div>
+      <ul>
+        <li/>
+        <li/>
+        <li/>
+      </ul>
+    </section>
   );
 }

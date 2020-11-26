@@ -41,3 +41,26 @@
 
 # 代码分割 - code splitting
 + Lazy loading on the route level
+
+
+~~~ js
+ optimization: {
+    moduleIds: 'hashed',
+    splitChunks: {
+      cacheGroups: {
+        react: { // 项目基本框架，react等
+          name: 'react-all', // can be used in chunks array of HtmlWebpackPlugin
+          test: /(react|react-dom|react-router|react-router-dom)/,
+          chunks: 'all',
+          priority: 10,
+        },
+        vendor: {
+          name: 'vendors',
+          test: /[\\/]node_modules[\\/]/,
+          chunks: 'all',
+          priority: 9,
+        },
+      }
+    },
+  },
+~~~

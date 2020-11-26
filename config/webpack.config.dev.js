@@ -1,8 +1,10 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const { rootPath, srcPath, publicPath } = require('./configs');
+const imgLoader = require('./img-loader');
 
 module.exports = {
   mode: 'development',
@@ -25,22 +27,20 @@ module.exports = {
       },
       {
         test: /\.css$/, // css-loader是基本的，加载并解析css文件；style-loader：注入到style标签中；
-        use: ['style-loader', 'css-loader']
+        use: [MiniCssExtractPlugin.loader, 'css-loader']
       },
       {
-        test: /\.(png|jpg|jpeg)$/,
-        use: {
-          loader: 'url-loader',
-          options: {
-            limit: 3000,
-            name: 'images/[name].[ext]',
-          }
-        },
+        test: /\.less$/,
+        use: ['style-loader', 'css-loader', 'less-loader'],
+      },
+      {
+        test: /\.(png|jpg|jpeg|gif)$/,
+        use: imgLoader,
       },
       {
         test: /\.(ttf|eot|woff|woff2|svg)$/,
         use: {
-          loader: 'file-loader',
+          loader: 'file-loader?cacheDirectory',
           options: {
             name: 'fonts/[name].[ext]'
           }
@@ -52,17 +52,11 @@ module.exports = {
     moduleIds: 'hashed',
     splitChunks: {
       cacheGroups: {
-        react: { // 项目基本框架，react等
-          name: 'react-all', // can be used in chunks array of HtmlWebpackPlugin
-          test: /(react|react-dom|react-router|react-router-dom)/,
-          chunks: 'all',
-          priority: 10,
-        },
         vendor: {
           name: 'vendors',
           test: /[\\/]node_modules[\\/]/,
           chunks: 'all',
-          priority: 9,
+          priority: 10,
         },
       }
     },
@@ -86,6 +80,10 @@ module.exports = {
       favicon: path.join(publicPath, 'favicon.ico'),
       filename: 'index.html',
       path: '/dist/'
+    }),
+    new MiniCssExtractPlugin({
+      filename: `css/[name].css`,
+      chunkFilename: `css/[name].css`
     }),
     new BundleAnalyzerPlugin()
   ],
