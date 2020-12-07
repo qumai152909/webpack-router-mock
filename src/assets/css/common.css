@@ -1,0 +1,33 @@
+.container {
+  position: relative;
+  min-height: 100vh;
+  background-color: #ccc;
+}
+.flex-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.center {
+  text-align: center;
+}
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+.hide {
+  display: none;
+}
+.show {
+  display: block;
+}
+.ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+a {
+  color: #fff
+}

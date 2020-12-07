@@ -1,0 +1,12 @@
+/node_modules
+/dist/
+
+.DS_Store
+.idea
+.svn*
+/npm-debug.log
+
+stats.json
+
+#yarn.lock
+#package-lock.json
