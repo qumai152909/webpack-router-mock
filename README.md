@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+# webpack-router-mock
+webpack-router-mock
+=======
 # 文件结构
 
 ## public/
@@ -64,3 +68,4 @@
     },
   },
 ~~~
+>>>>>>> 42c9940f66f114fac4c8e36f54f29b5277b8d2f2
