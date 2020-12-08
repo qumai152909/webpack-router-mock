@@ -8,7 +8,7 @@ const imgLoader = require('./img-loader');
 
 module.exports = {
   mode: 'development',
-  devtool: 'cheap-inline-source-map',
+  devtool: 'inline-cheap-source-map',
   entry: {
     main: './src/index.js',
   },
@@ -50,6 +50,7 @@ module.exports = {
   },
   optimization: {
     moduleIds: 'hashed',
+    usedExports: true,
     splitChunks: {
       cacheGroups: {
         vendor: {
