@@ -29,12 +29,11 @@ module.exports = {
     'import/resolver': {
       alias: {
         map: [
-          ['~@', './src'],
-          ['~@business', './src/components/business'],
-          ['~@ui', './src/components/ui'],
-          ['~@redux', './src/redux'],
-          ['~@common', './src/common'],
-          ['~@views', './src/views']
+          ['@/pages', './src/pages'],
+          ['@/assets', './src/assets'],
+          ['@/components', './components'],
+          ['@/utils', './utils'],
+          ['@/styles', './styles']
         ],
         extensions: [".js", ".jsx", ".json"]
       }

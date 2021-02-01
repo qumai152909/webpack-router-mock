@@ -1,22 +1,23 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-const { rootPath, srcPath, publicPath } = require('./configs');
-const imgLoader = require('./img-loader');
+const { rootDir, srcDir, publicDir } = require('./configs');
+const imgLoader = require('./img.loader.js');
 
 module.exports = {
   mode: 'development',
-  devtool: 'inline-cheap-source-map',
+  devtool: 'inline-cheap-module-eval-source-map',
   entry: {
-    main: './src/index.js',
+    main: './src/main.jsx',
   },
   output: {
     filename: 'js/[name].js',
-    path: path.join(rootPath, 'dist'), // 打包后文件输出目录
+    path: path.join(rootDir, 'dist'), // 打包后文件输出目录
     publicPath: '/dist/',
-    chunkFilename: `js/[name].chunk.js`
+    chunkFilename: `js/[name].js`
   },
   module: {
     rules: [
@@ -31,11 +32,12 @@ module.exports = {
       },
       {
         test: /\.less$/,
-        use: ['style-loader', 'css-loader', 'less-loader'],
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader'],
       },
       {
         test: /\.(png|jpg|jpeg|gif)$/,
         use: imgLoader,
+        include: [srcDir],
       },
       {
         test: /\.(ttf|eot|woff|woff2|svg)$/,
@@ -44,20 +46,33 @@ module.exports = {
           options: {
             name: 'fonts/[name].[ext]'
           }
-        }
+        },
+        include: [srcDir],
       }
     ]
   },
   optimization: {
+    runtimeChunk: {
+      name: 'manifest',
+    },
     moduleIds: 'hashed',
     usedExports: true,
     splitChunks: {
+      chunks: 'all',
       cacheGroups: {
-        vendor: {
-          name: 'vendors',
-          test: /[\\/]node_modules[\\/]/,
+        dll: {
+          test: /[\\/]node_modules[\\/](react|react-dom|babel-polyfill|mobx|mobx-react|mobx-react-dom)/,
+          minChunks: 1,
           chunks: 'all',
           priority: 10,
+          name: 'dll',
+        },
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          minChunks: 1,
+          chunks: 'all',
+          priority: 9,
+          name: 'vendors', // can be used in chunks array of HtmlWebpackPlugin
         },
       }
     },
@@ -65,20 +80,22 @@ module.exports = {
   resolve: { // 在何处、如何查找文件
     extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
     modules: [
-      srcPath,
-      path.resolve(rootPath, 'node_modules'),
+      srcDir,
+      path.resolve(rootDir, 'node_modules'),
     ],
     alias: {
-      '@assets': path.resolve(srcPath, './assets'),
-      '@components': path.resolve(srcPath, './components'),
-      '@utils': path.resolve(srcPath, './utils')
+      '@/assets': path.resolve(srcDir, './assets'),
+      '@/components': path.resolve(srcDir, './components'),
+      '@/utils': path.resolve(srcDir, './utils'),
+      '@/styles': path.resolve(srcDir, './styles'),
     },
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       inject: "true",
-      template: path.join(publicPath, 'index.html'),
-      favicon: path.join(publicPath, 'favicon.ico'),
+      template: path.join(publicDir, 'index.html'),
+      favicon: path.join(publicDir, 'favicon.ico'),
       filename: 'index.html',
       path: '/dist/'
     }),

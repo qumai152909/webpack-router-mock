@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # webpack-router-mock
 webpack-router-mock
 =======
@@ -10,10 +9,10 @@ webpack-router-mock
 一般包含 HTML 文件;
 如果你希望你的文件不被编译，比如jquery.min.js，或者压缩好的js插件等，你就可以把文件放在public文件夹中，这样还可以减少文件构建时间，可以减少构建文件的大小。
 
-## config/ 
+## config/
 存放的是项目的配置文件
 
-## mock/ 
+## mock/
 本地模拟数据
 
 ## src/
@@ -68,4 +67,11 @@ webpack-router-mock
     },
   },
 ~~~
->>>>>>> 42c9940f66f114fac4c8e36f54f29b5277b8d2f2
+
+## router
+https://github.com/ReactTraining/react-router/blob/v3/docs/guides/Histories.md#configuring-your-server
+
+## github demo projects
+https://github.com/flatlogic/react-dashboard
+https://github.com/now1then/react-web-pro //  webpack react react-router axios ant-design mobx
+

@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-const { rootPath, srcPath, publicPath } = require('./configs');
+const { rootDir, srcDir, publicDir } = require('./configs');
 
 module.exports = {
   mode: 'production',
@@ -12,7 +12,7 @@ module.exports = {
   },
   output: {
     filename: 'js/[name].[hash].js',
-    path: path.join(rootPath, 'dist'), // 打包后文件输出目录
+    path: path.join(rootDir, 'dist'), // 打包后文件输出目录
     publicPath: '/dist/',
     chunkFilename: `js/[name].[contenthash].js`
   },
@@ -68,15 +68,15 @@ module.exports = {
   resolve: { // 在何处、如何查找文件
     extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
     modules: [
-      srcPath,
-      path.resolve(rootPath, 'node_modules'),
+      srcDir,
+      path.resolve(rootDir, 'node_modules'),
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({
       inject: "true",
-      template: path.join(publicPath, 'index.html'),
-      favicon: path.join(publicPath, 'favicon.ico'),
+      template: path.join(publicDir, 'index.html'),
+      favicon: path.join(publicDir, 'favicon.ico'),
       filename: 'index.html',
       path: '/dist/'
     }),
