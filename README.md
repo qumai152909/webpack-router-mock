@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+=======
+# webpack-router-mock
+webpack-router-mock
+=======
+>>>>>>> 打包修改
 # 文件结构
 
 ## public/
@@ -63,3 +69,15 @@
       }
     },
   },
+<<<<<<< HEAD
+=======
+~~~
+
+## router
+https://github.com/ReactTraining/react-router/blob/v3/docs/guides/Histories.md#configuring-your-server
+
+## github demo projects
+https://github.com/flatlogic/react-dashboard
+https://github.com/now1then/react-web-pro //  webpack react react-router axios ant-design mobx
+
+>>>>>>> 打包修改
