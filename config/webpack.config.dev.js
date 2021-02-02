@@ -108,21 +108,18 @@ let config = {
   devServer: {
     host: '0.0.0.0',
     port: 8120, // 默认8080
+    disableHostCheck: true,
     historyApiFallback: { index: '/dist/index.html' },
     hot: true,
     open: true,
-    proxy: [
-      {
-        context: ['/api'],
-        target: 'http://localhost:8121',
-      },
-      {
-        context: ['/www'],
-        target: `http://11.80.15.91`, // /api/users 的请求会将请求代理到 http://11.80.15.91/api/users
+    proxy: {
+      '/api/**' : {
+        changeOrigin: true,
+        target: 'http://localhost:9003',
         secure: false,
-        changeOrigin: true
+        logLevel: 'debug',
       }
-    ],
+    },
   }
 };
 

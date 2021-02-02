@@ -33,9 +33,8 @@ const homePage = require('./routes/homePage');
 app.use('/api/home', homePage);
 
 /* === === === */
-let server = app.listen(8121, function() {
-  let host = server.address().address;
-  let port = server.address().port;
-
-  console.log('Example app listening at http://%s:%s', host, port);
+app.listen(9003, function() {
+  // let host = server.address().address;
+  // let port = server.address().port;
+  console.log('Example app listening at http://%s:%s', 'localhost', 9003);
 });
