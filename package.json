@@ -2,10 +2,10 @@
   "name": "webpack-dev-server-mock",
   "version": "1.0.0",
   "description": "devserver mock router express",
-  "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --config config/webpack.config.dev.js --inline --hot",
-    "dev:dist": "webpack --config config/webpack.config.dev.js --color"
+    "dev": "npm run mock | webpack-dev-server --config config/webpack.config.dev.js --inline --hot --progress",
+    "dev:dist": "cross-env Analyze=true webpack --config config/webpack.config.dev.js --color --progress",
+    "mock": "nodemon mock/app.js"
   },
   "keywords": [
     "devserver",
@@ -16,6 +16,7 @@
   "devDependencies": {
     "@babel/cli": "^7.12.1",
     "@babel/core": "^7.12.3",
+    "@babel/plugin-proposal-decorators": "^7.12.12",
     "@babel/plugin-transform-runtime": "^7.12.10",
     "@babel/preset-env": "^7.12.1",
     "@babel/preset-react": "^7.12.5",
@@ -41,7 +42,7 @@
     "less": "^3.12.2",
     "less-loader": "^7.0.2",
     "mini-css-extract-plugin": "^1.3.1",
-    "nodemon": "^2.0.6",
+    "nodemon": "^2.0.7",
     "postcss-loader": "^4.0.4",
     "style-loader": "^2.0.0",
     "url-loader": "^4.1.1",
@@ -57,6 +58,8 @@
     "classnames": "^2.2.6",
     "history": "^4.10.1",
     "lodash": "^4.17.20",
+    "mobx": "^6.1.4",
+    "mobx-react": "^7.1.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router": "^5.2.0",

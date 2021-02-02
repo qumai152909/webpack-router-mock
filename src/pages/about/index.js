@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from 'antd';
-import { add } from '../../utils/add';
+import { add } from '@/utils/add';
+import './index.less';
 
 console.log('add: ', add(2, 2));
 
