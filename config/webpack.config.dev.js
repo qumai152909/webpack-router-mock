@@ -106,19 +106,19 @@ let config = {
     }),
   ],
   devServer: {
-    host: 'localhost', // 默认localhost
+    host: '0.0.0.0',
     port: 8120, // 默认8080
     historyApiFallback: { index: '/dist/index.html' },
     hot: true,
     open: true,
     proxy: [
       {
-        context: ['/mock-web/api'],
-        target: 'http://localhost:8121/mock-web/api',
+        context: ['/api'],
+        target: 'http://localhost:8121',
       },
       {
-        context: ['/api'],
-        target: `http://11.80.15.91`,
+        context: ['/www'],
+        target: `http://11.80.15.91`, // /api/users 的请求会将请求代理到 http://11.80.15.91/api/users
         secure: false,
         changeOrigin: true
       }
