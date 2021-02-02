@@ -5,6 +5,8 @@ module.exports = {
   ],
   plugins: [
     "@babel/transform-runtime",
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    ["@babel/plugin-proposal-class-properties", { "loose": true }],
     [
       "import", // 必须有；否则加载antd的全部组件
       {

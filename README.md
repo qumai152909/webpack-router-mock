@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-=======
-# webpack-router-mock
-webpack-router-mock
-=======
->>>>>>> 打包修改
 # 文件结构
 
 ## public/
@@ -69,9 +63,6 @@ webpack-router-mock
       }
     },
   },
-<<<<<<< HEAD
-=======
-~~~
 
 ## router
 https://github.com/ReactTraining/react-router/blob/v3/docs/guides/Histories.md#configuring-your-server
@@ -80,4 +71,17 @@ https://github.com/ReactTraining/react-router/blob/v3/docs/guides/Histories.md#c
 https://github.com/flatlogic/react-dashboard
 https://github.com/now1then/react-web-pro //  webpack react react-router axios ant-design mobx
 
->>>>>>> 打包修改
+## 问题
+1，Syntax error - Support for the experimental syntax 'decorators-legacy' isn't currently enabled
+解决地址：https://babel.docschina.org/docs/en/next/babel-plugin-proposal-decorators/
+原因：不支持装饰器语法
+解决方式：安装包@babel/plugin-proposal-decorators，并配置babel；
+
+2, Support for the experimental syntax 'classProperties' isn't currently enabled
+
+原因：当我们使用了一些JavaScript的一些新特性的时候，但是有没有在webpack.config.js里面或者是.babelrc文件中配置相关插件，就可以解决了。
+
+官网地址：https://babel.docschina.org/docs/en/babel-plugin-proposal-class-properties/
+
+3, internal/modules/cjs/loader.js:883
+     throw err

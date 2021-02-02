@@ -7,7 +7,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const { rootDir, srcDir, publicDir } = require('./configs');
 const imgLoader = require('./img.loader.js');
 
-module.exports = {
+let config = {
   mode: 'development',
   devtool: 'inline-cheap-module-eval-source-map',
   entry: {
@@ -55,13 +55,14 @@ module.exports = {
     runtimeChunk: {
       name: 'manifest',
     },
-    moduleIds: 'hashed',
+    moduleIds: 'named', // moduleIds: 'hashed',
+    chunkIds: 'named',
     usedExports: true,
     splitChunks: {
       chunks: 'all',
       cacheGroups: {
         dll: {
-          test: /[\\/]node_modules[\\/](react|react-dom|babel-polyfill|mobx|mobx-react|mobx-react-dom)/,
+          test: /[\\/]node_modules[\\/](babel-polyfill|history|lodash|react|react-dom|react-router|mobx|mobx-react|mobx-react-dom)/,
           minChunks: 1,
           chunks: 'all',
           priority: 10,
@@ -93,7 +94,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      inject: "true",
+      inject: true,
       template: path.join(publicDir, 'index.html'),
       favicon: path.join(publicDir, 'favicon.ico'),
       filename: 'index.html',
@@ -103,15 +104,34 @@ module.exports = {
       filename: `css/[name].css`,
       chunkFilename: `css/[name].css`
     }),
-    new BundleAnalyzerPlugin()
   ],
   devServer: {
     host: 'localhost', // 默认localhost
-    port: 8188, // 默认8080
-    historyApiFallback: { index: '/dist/index.html' }
+    port: 8120, // 默认8080
+    historyApiFallback: { index: '/dist/index.html' },
+    hot: true,
+    open: true,
+    proxy: [
+      {
+        context: ['/mock-web/api'],
+        target: 'http://localhost:8121/mock-web/api',
+      },
+      {
+        context: ['/api'],
+        target: `http://11.80.15.91`,
+        secure: false,
+        changeOrigin: true
+      }
+    ],
   }
 };
 
+const isAnalyze = process.env.Analyze === 'true';
+if (isAnalyze) {
+  config.plugins.push(new BundleAnalyzerPlugin());
+}
+
+module.exports = config;
 // file-loader可以解决图片在css中的引入路径问题；
 // url-loader:当图片较小时，转为base64编码； 默认包括file-loader
 
