@@ -3,7 +3,7 @@ import axiosTool from '@/utils/axios';
 // 获取首页列表
 export async function getHomeList(params) {
   return axiosTool({
-    url: 'http://localhost:8120/api/home/getHomeList',
+    url: '/api/home/getHomeList',
     method: 'get',
     params,
     title: '获取首页列表',

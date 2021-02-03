@@ -13,7 +13,7 @@ export default function AppRouter() {
   return (
     <Suspense fallback={ <Loading/> }>
       <Switch>
-        <Route exact path="/"><Home/></Route>
+        <Route exact path="/"><Users/></Route>
         <Route exact path="/about"><About /></Route>
         <Route exact path="/users"><Users/></Route>
         <Route exact path="/home"><Home/></Route>
