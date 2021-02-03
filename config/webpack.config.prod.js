@@ -8,7 +8,7 @@ module.exports = {
   mode: 'production',
   devtool: 'source-map',
   entry: {
-    app: './src/index.js',
+    app: './src/main.js',
   },
   output: {
     filename: 'js/[name].[hash].js',
