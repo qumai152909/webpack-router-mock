@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "devserver mock router express",
   "scripts": {
-    "dev": "npm run mock | webpack-dev-server --config config/webpack.config.dev.js --inline --hot --progress",
+    "dev": "npm run mock | webpack-dev-server --config config/webpack.config.dev.js --color --hot --progress",
     "dev:dist": "cross-env Analyze=true webpack --config config/webpack.config.dev.js --color --progress",
-    "mock": "nodemon mock/app.js"
+    "mock": "nodemon mock/server.js"
   },
   "keywords": [
     "devserver",
@@ -28,6 +28,7 @@
     "body-parser": "^1.19.0",
     "clean-webpack-plugin": "^3.0.0",
     "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
     "cross-env": "^7.0.2",
     "css-loader": "^5.0.1",
     "eslint": "^7.15.0",
@@ -42,6 +43,7 @@
     "less": "^3.12.2",
     "less-loader": "^7.0.2",
     "mini-css-extract-plugin": "^1.3.1",
+    "morgan": "^1.10.0",
     "nodemon": "^2.0.6",
     "postcss-loader": "^4.0.4",
     "style-loader": "^2.0.0",

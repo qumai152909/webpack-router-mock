@@ -7,6 +7,10 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const { rootDir, srcDir, publicDir } = require('./configs');
 const imgLoader = require('./img.loader.js');
 
+// Host、port
+const host = process.env.HOST || 'localhost';
+const port = 3000;
+
 let config = {
   mode: 'development',
   devtool: 'inline-cheap-module-eval-source-map',
@@ -106,19 +110,18 @@ let config = {
     }),
   ],
   devServer: {
-    host: '0.0.0.0',
-    port: 8120, // 默认8080
-    disableHostCheck: true,
+    host,
+    port,
+    compress: false,
     historyApiFallback: { index: '/dist/index.html' },
     hot: true,
     open: true,
     proxy: {
-      '/api/**' : {
-        changeOrigin: true,
-        target: 'http://localhost:9003',
+      '/api': {
+        target: 'http://localhost:3003',
         secure: false,
-        logLevel: 'debug',
-      }
+        changeOrigin: true
+      },
     },
   }
 };
