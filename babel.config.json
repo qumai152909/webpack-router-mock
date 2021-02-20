@@ -1,19 +1,19 @@
-module.exports = {
-  presets: [
+{
+  "presets": [
     "@babel/preset-env",
-    '@babel/preset-react'
+    "@babel/preset-react"
   ],
-  plugins: [
+  "plugins": [
     "@babel/transform-runtime",
     ["@babel/plugin-proposal-decorators", { "legacy": true }],
     ["@babel/plugin-proposal-class-properties", { "loose": true }],
     [
-      "import", // 必须有；否则加载antd的全部组件
+      "import",
       {
         "libraryName": "antd",
         "libraryDirectory": "es",
-        "style": "css" // `style: true` 会加载 less 文件
+        "style": "css"
       }
     ]
   ]
-};
+}
