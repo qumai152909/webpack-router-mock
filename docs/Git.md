@@ -6,13 +6,13 @@
 
   + 在项目根目录右键命令行工具输入：
 
-  *git remote add origin [https://github.com/XXXXXX/xxxxx.git](https://link.zhihu.com/?target=https%3A//github.com/tugenhua0707/testgit.git) (这里是你的仓库即项目地址）*
+    *git remote add origin [https://github.com/XXXXXX/xxxxx.git](https://link.zhihu.com/?target=https%3A//github.com/tugenhua0707/testgit.git) (这里是你的仓库即项目地址）*
 
   3， 把项目推送到远程仓库：
 
   + 同样使用在根目录下的命令行工具输入：
 
-  *git add .*           # (点为全部的意思) 把项目所有文件加到缓存区
+     *git add .*             (点为全部的意思) 把项目所有文件加到缓存区
 
   + *输入：git commit -m '这里为注释，随便写'* ： 把缓存区里的文件提交到本地仓库
 

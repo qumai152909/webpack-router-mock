@@ -11,6 +11,7 @@
 
 ## mock/
 本地模拟数据
+mock/app.js mock server入口
 
 ## src/
 项目的源代码（业务代码）
@@ -63,6 +64,7 @@
       }
     },
   },
+~~~
 
 ## router
 https://github.com/ReactTraining/react-router/blob/v3/docs/guides/Histories.md#configuring-your-server
