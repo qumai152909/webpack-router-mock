@@ -32,8 +32,7 @@
 
   ## 拉取远程分支到本地
 
-  **git fetch origin dev（dev为远程仓库的分支名）**
-
+  **git checkout -b version2 origin/origin2（dev为远程仓库的分支名）**
 
 
   ## 删除本地分支
