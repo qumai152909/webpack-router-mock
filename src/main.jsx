@@ -2,8 +2,6 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { createBrowserHistory } from 'history';
-
-import '@/styles/index.css';
 import App from './App';
 
 const appHistory = createBrowserHistory();

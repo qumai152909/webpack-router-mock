@@ -1,9 +1,10 @@
 // 项目入口文件
 import React from 'react';
 import { Router } from "react-router-dom";
-
 import NavBar from '@/components/NavBar';
 import AppRouter from './router';
+import '@/styles/app.theme.less';
+import '@/styles/app.less';
 
 
 function App({ history }) {
