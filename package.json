@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "npm run mock | webpack-dev-server --config config/webpack.config.dev.js --color --hot --progress",
     "dev:dist": "cross-env Analyze=true webpack --config config/webpack.config.dev.js --color --progress",
-    "mock": "nodemon mock/server.js"
+    "mock": "nodemon mock/server.js",
+    "babel:test": "babel src/demo --out-dir dist/demo"
   },
   "keywords": [
     "devserver",
@@ -14,7 +15,8 @@
   "author": "syy",
   "license": "ISC",
   "resolutions": {
-    "webpack-dev-server/chokidar":"^3"
+    "webpack-dev-server/chokidar": "^3",
+    "webpack/watchpack/watchpack-chokidar2/chokidar": "^3"
   },
   "devDependencies": {
     "@babel/cli": "^7.14.3",
@@ -52,16 +54,20 @@
     "style-loader": "^2.0.0",
     "typescript": "^2.8.0",
     "url-loader": "^4.1.1",
-    "webpack": "^4.46.0",
+    "webpack": "^4.43.0",
     "webpack-bundle-analyzer": "^4.4.0",
-    "webpack-cli": "^4.4.0",
-    "webpack-dev-server": "^3.11.2"
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.2",
+    "webpack-merge": "^5.8.0"
   },
   "dependencies": {
     "@ant-design/icons": "^4.6.0",
+    "@babel/runtime": "^7.14.0",
+    "@babel/runtime-corejs3": "^7.14.0",
     "antd": "^4.16.0",
     "axios": "^0.21.1",
     "classnames": "^2.3.1",
+    "core-js": "3",
     "dayjs": "^1.8.30",
     "history": "^5.0.0",
     "lodash": "^4.17.20",

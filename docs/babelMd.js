@@ -1,3 +1,4 @@
+// 1， babel.config.js配置文件
 module.exports = {
   presets: [
     "@babel/preset-env",
@@ -17,4 +18,29 @@ module.exports = {
     ]
   ]
 };
-// @babel/plugin-proposal-decorators :
+
+// 2， babel.config.json配置文件 (推荐)
+const json = {
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "useBuiltIns": "usage"
+      }
+    ],
+    "@babel/preset-react"
+  ],
+  "plugins": [
+    "@babel/transform-runtime",
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    ["@babel/plugin-proposal-class-properties", { "loose": true }],
+    [
+      "import",
+      {
+        "libraryName": "antd",
+        "libraryDirectory": "es",
+        "style": "css"
+      }
+    ]
+  ]
+};

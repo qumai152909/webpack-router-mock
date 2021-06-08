@@ -3,21 +3,17 @@
     [
       "@babel/preset-env",
       {
-        "useBuiltIns": "usage"
+        "useBuiltIns": "usage",
+        "corejs": 3
       }
-    ],
-    "@babel/preset-react"
+    ]
   ],
   "plugins": [
-    "@babel/transform-runtime",
-    ["@babel/plugin-proposal-decorators", { "legacy": true }],
-    ["@babel/plugin-proposal-class-properties", { "loose": true }],
     [
-      "import",
+      "@babel/plugin-transform-runtime",
       {
-        "libraryName": "antd",
-        "libraryDirectory": "es",
-        "style": "css"
+        "corejs": false,
+        "regenerator": false
       }
     ]
   ]
