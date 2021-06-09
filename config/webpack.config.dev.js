@@ -89,6 +89,10 @@ let config = {
       path.resolve(rootDir, 'node_modules'),
     ],
     alias: {
+      '@/src': path.resolve(srcDir),
+      '@/requests': path.resolve(srcDir, './requests'),
+      '@/router': path.resolve(srcDir, './router'),
+      '@/stores': path.resolve(srcDir, './stores'),
       '@/assets': path.resolve(srcDir, './assets'),
       '@/components': path.resolve(srcDir, './components'),
       '@/utils': path.resolve(srcDir, './utils'),

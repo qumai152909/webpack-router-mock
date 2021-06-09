@@ -11,7 +11,6 @@ class HomeStore {
   @observable loading = false;
   
   // 获取列表数据
-  @action.bound
   async listDataFetch() {
     this.loading = true;
     const res = await api.getHomeList();

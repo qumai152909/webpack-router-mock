@@ -6,7 +6,7 @@
     "dev": "npm run mock | webpack-dev-server --config config/webpack.config.dev.js --color --hot --progress",
     "dev:dist": "cross-env Analyze=true webpack --config config/webpack.config.dev.js --color --progress",
     "mock": "nodemon mock/server.js",
-    "babel:test": "babel src/demo --out-dir dist/demo"
+    "babel:test": "babel src/test --out-dir dist/test"
   },
   "keywords": [
     "devserver",
@@ -69,14 +69,17 @@
     "classnames": "^2.3.1",
     "core-js": "3",
     "dayjs": "^1.8.30",
-    "history": "^5.0.0",
-    "lodash": "^4.17.20",
+    "history": "^4.10.1",
+    "lodash": "^4.17.21",
     "mobx": "^6.1.4",
     "mobx-react": "^7.1.0",
+    "mobx-react-lite": "^3.2.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-redux": "^7.2.0",
     "react-router": "^5.2.0",
-    "react-router-dom": "^5.2.0"
+    "react-router-dom": "^5.2.0",
+    "redux": "^4.0.5"
   },
   "browserslist": {
     "production": [

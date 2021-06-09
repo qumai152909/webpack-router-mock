@@ -9,7 +9,7 @@ const Home = lazy(() => import(/* webpackChunkName: "home" */ '../pages/home'));
 const About = lazy(() => import(/* webpackChunkName: "about" */ '../pages/about'));
 const Users = lazy(() => import(/* webpackChunkName: "users" */ '../pages/users'));
 
-export default function AppRouter() {
+export default function AppRoutes() {
   return (
     <Suspense fallback={ <Loading/> }>
       <Switch>
