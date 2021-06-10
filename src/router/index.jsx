@@ -8,6 +8,7 @@ import Loading from '@/components/Loading';
 const Home = lazy(() => import(/* webpackChunkName: "home" */ '../pages/home'));
 const About = lazy(() => import(/* webpackChunkName: "about" */ '../pages/about'));
 const Users = lazy(() => import(/* webpackChunkName: "users" */ '../pages/users'));
+const Theme = lazy(() => import(/* webpackChunkName: "theme" */ '../pages/theme'));
 
 export default function AppRoutes() {
   return (
@@ -17,6 +18,7 @@ export default function AppRoutes() {
         <Route exact path="/about"><About /></Route>
         <Route exact path="/users"><Users/></Route>
         <Route exact path="/home"><Home/></Route>
+        <Route exact path="/theme"><Theme/></Route>
         <Redirect from="*" to="/" />
       </Switch>
     </Suspense>
