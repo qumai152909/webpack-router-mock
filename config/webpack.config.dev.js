@@ -31,12 +31,21 @@ let config = {
         exclude: /node_modules/,
       },
       {
-        test: /\.css$/, // css-loader是基本的，加载并解析css文件；style-loader：注入到style标签中；
-        use: [MiniCssExtractPlugin.loader, 'css-loader']
-      },
-      {
-        test: /\.less$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader'],
+        test: /\.(css|less)$/, // css-loader是基本的，加载并解析css文件；style-loader：注入到style标签中；
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'less-loader',
+          {
+            loader: 'less-loader',
+            options: {
+              lessOptions: {
+                javascriptEnabled: true
+              },
+              sourceMap: true
+            },
+          }
+        ],
       },
       {
         test: /\.(png|jpg|jpeg|gif)$/,

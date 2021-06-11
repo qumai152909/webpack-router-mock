@@ -5,7 +5,7 @@ import Layout from '@/components/Layout';
 import ErrorBoundary from '@/components/ErrorBoundary';
 import { rootStore, StoresContext } from '@/stores';
 import AppRoutes from '@/router';
-//import '@/styles/app.theme.less';
+import '@/styles/app.theme.less';
 import '@/styles/app.less';
 
 const App = ({ history }) => (

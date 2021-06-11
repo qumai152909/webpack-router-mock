@@ -17,6 +17,7 @@ export default class CounterStore {
     this.count--;
   }
   
+  // To create a computed value, define a property using a JS getter function get
   get doubleCount() {
     return this.count * 2;
   }

@@ -6,7 +6,7 @@ import Loading from '@/components/Loading';
 
 // <LazyComponent> 组件要在Suspense组件中使用
 const Home = lazy(() => import(/* webpackChunkName: "home" */ '../pages/home'));
-const About = lazy(() => import(/* webpackChunkName: "about" */ '../pages/about'));
+const Counter = lazy(() => import(/* webpackChunkName: "counter" */ '../pages/counter'));
 const Users = lazy(() => import(/* webpackChunkName: "users" */ '../pages/users'));
 const Theme = lazy(() => import(/* webpackChunkName: "theme" */ '../pages/theme'));
 
@@ -15,7 +15,7 @@ export default function AppRoutes() {
     <Suspense fallback={ <Loading/> }>
       <Switch>
         <Route exact path="/"><Users/></Route>
-        <Route exact path="/about"><About /></Route>
+        <Route exact path="/counter"><Counter /></Route>
         <Route exact path="/users"><Users/></Route>
         <Route exact path="/home"><Home/></Route>
         <Route exact path="/theme"><Theme/></Route>
