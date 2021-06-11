@@ -1,5 +1,6 @@
 /node_modules
 /dist/
+/build/
 
 .DS_Store
 .idea
@@ -7,6 +8,5 @@
 /npm-debug.log
 
 stats.json
-
 yarn.lock
 package-lock.json

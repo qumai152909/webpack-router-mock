@@ -66,6 +66,22 @@ mock/app.js mock server入口
   },
 ~~~
 
+## 4. .npmrc
+   大家一开始使用 npm 安装依赖包时，肯定感受过那挤牙膏般的下载速度，上网一查只需要将 npm 源设置为淘宝镜像源就行，在控制台执行一下以下命令：
+   npm config set registry https://registry.npm.taobao.org
+   复制代码
+   从此过上了速度七十迈，心情是自由自在的生活。
+   但是大家想想，万一某个同学克隆了你的项目之后，准备在他本地开发的时候，并没有设置淘宝镜像源，又要人家去手动设置一遍，我们作为项目的发起者，就先给别人省下这份时间吧，只需要在根目录添加一个 .npmrc 并做简单的配置即可：
+   ### 创建 .npmrc 文件
+   touch .npmrc
+   ### 在该文件内输入配置
+   registry=https://registry.npm.taobao.org/
+   
+## 2. Prettier
+如果说 EditorConfig 帮你统一编辑器风格，那 Prettier 就是帮你统一项目代码风格（code style）的。
+Prettier 拥有更多配置项（实际上也不多，数了下二十个），且能在发布流程中执行命令自动格式化，能够有效的使项目代码风格趋于统一。
+
+
 ## router
 https://github.com/ReactTraining/react-router/blob/v3/docs/guides/Histories.md#configuring-your-server
 
