@@ -59,3 +59,50 @@ https://github.com/webmasterdevlin/mobx-6-course/blob/master/package.json  mobx-
 //https://github.com/IFmiss/react-website
 
 
+## lint-staged 和 husky
+每次提交代码前， 我们都要对代码进行格式化以及 eslint 和 stylelint 的规则校验，以此来强制规范我们的代码风格，以及防止隐性 BUG 的产生。
+
+那么有什么办法只对我们 git 缓存区最新改动过的文件进行以上的格式化和 lint 规则校验呢？
+    答案就是 lint-staged 。
+
+我们还需要另一个工具 husky ，它会提供一些钩子，比如执行 git commit 之前的钩子 pre-commit ，借助这个钩子我们就能执行 lint-staged 所提供的代码文件格式化及 lint 规则校验！
+
+可能大家搜索一些文章的时候，会发现在 lint-staged 中还配置了一个 git add ，实际上在 v10 版本之后任何被修改了的原 staged 区的文件都会被自动 git add，所以无需再添加。
+
+```json
+{
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+ "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "eslint --config .eslintrc.js"
+    ],
+    "src/**/*.{css,less,scss}": [
+      "stylelint --config .stylelintrc.js"
+    ],
+    "src/**/*.{ts,tsx,js,json,html,yml,css,less,scss,md}": [
+      "prettier --write"
+    ]
+  }
+}
+```
+
+## commit log
+/**
+ * build : 改变了build工具 如 webpack
+ * ci : 持续集成新增
+ * chore : 构建过程或辅助工具的变动
+ * feat : 新功能
+ * docs : 文档改变
+ * fix : 修复bug
+ * perf : 性能优化
+ * refactor : 某个已有功能重构
+ * revert : 撤销上一次的 commit
+ * style : 代码格式改变
+ * test : 增加测试
+ * anno: 增加注释
+ */
+

@@ -12,7 +12,7 @@ const distDir = path.resolve(__dirname, '../dist');
 const appDirectory = fs.realpathSync(process.cwd());
 
 // Gets absolute path of file within app directory
-const resolveAppPath = relativePath => path.resolve(appDirectory, relativePath);
+const resolveAppPath = (relativePath) => path.resolve(appDirectory, relativePath);
 
 
 module.exports = {

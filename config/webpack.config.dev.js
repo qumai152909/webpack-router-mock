@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const { rootDir, srcDir, publicDir } = require('./configs');
 const imgLoader = require('./img.loader.js');
@@ -11,18 +11,9 @@ const imgLoader = require('./img.loader.js');
 const host = process.env.HOST || 'localhost';
 const port = 3000;
 
-let config = {
+const config = {
   mode: 'development',
   devtool: 'inline-cheap-module-eval-source-map',
-  entry: {
-    main: './src/main.jsx',
-  },
-  output: {
-    filename: 'js/[name].js',
-    path: path.join(rootDir, 'dist'), // 打包后文件输出目录
-    publicPath: '/dist/',
-    chunkFilename: `js/[name].js`
-  },
   module: {
     rules: [
       {
@@ -118,8 +109,8 @@ let config = {
       path: '/dist/'
     }),
     new MiniCssExtractPlugin({
-      filename: `css/[name].css`,
-      chunkFilename: `css/[name].css`
+      filename: 'css/[name].css',
+      chunkFilename: 'css/[name].css'
     }),
   ],
   devServer: {
@@ -145,7 +136,9 @@ if (isAnalyze) {
 }
 
 module.exports = config;
-// file-loader可以解决图片在css中的引入路径问题；
-// url-loader:当图片较小时，转为base64编码； 默认包括file-loader
+/*
+ * file-loader可以解决图片在css中的引入路径问题；
+ * url-loader:当图片较小时，转为base64编码； 默认包括file-loader
+ */
 
 // historyApiFallback 当路径匹配的文件不存在时不出现404,而是取配置的选项historyApiFallback.index对应的文件

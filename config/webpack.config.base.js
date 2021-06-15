@@ -2,16 +2,21 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const { rootDir, srcDir, publicDir } = require('./configs');
 const imgLoader = require('./img.loader.js');
 
-let config = {
-  entry: path.join(__dirname, "src", "main.js"),
+const baseConfig = {
+  mode: 'development',
+  entry: {
+    main: './src/main',
+  },
   output: {
-    path: path.join(__dirname, "build"),
-    filename: "bundle.js"
+    path: path.join(rootDir, 'dist'), // 打包后文件输出目录
+    publicPath: '/dist/',
+    filename: 'js/[name].js',
+    chunkFilename: 'js/[name].chunk.js'
   },
   module: {
     rules: [
@@ -28,9 +33,9 @@ let config = {
         test: /.(jpg|jpeg|png|gif|mp3|svg)$/,
         use: [
           {
-            loader: "file-loader",
+            loader: 'file-loader',
             options: {
-              name: "[path][name].[ext]"
+              name: '[path][name].[ext]'
             }
           }
         ]
@@ -39,15 +44,15 @@ let config = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "[name].css",
-      chunkFilename: "[id].css"
+      filename: '[name].css',
+      chunkFilename: '[id].css'
     })
   ]
 };
 
 const isAnalyze = process.env.Analyze === 'true';
 if (isAnalyze) {
-  config.plugins.push(new BundleAnalyzerPlugin());
+  baseConfig.plugins.push(new BundleAnalyzerPlugin());
 }
 
-module.exports = config;
+module.exports = baseConfig;
